@@ -1,12 +1,29 @@
+let paginaActual = 1;
+
+
 document.addEventListener("DOMContentLoaded", () => {
     cargarSeriesIniciales();
+
+    const botonAnterior = document.getElementById("anterior");
+    const botonSiguiente = document.getElementById("siguiente");
+
+    if (botonAnterior) {
+        botonAnterior.addEventListener("click", paginaAnterior);
+    }
+    if (botonSiguiente) {
+        botonSiguiente.addEventListener("click", paginaSiguiente);
+    }
 });
 
 async function cargarSeriesIniciales(){
     const contenedorSeries = document.getElementById("series");
 
+    contenedorSeries.innerHTML = "";
     
-    for (let id = 1; id <= 6; id++){
+    const idInicial = (paginaActual - 1) * 6 + 1;
+    const idFinal = paginaActual * 6;
+
+    for (let id = idInicial; id <= idFinal; id++){
         try{
             const devolucion = await fetch(`https://api.tvmaze.com/shows/${id}`);
             
@@ -28,5 +45,18 @@ async function cargarSeriesIniciales(){
         } catch(error){
             console.log(error);
         }
+    }
+}
+    
+
+function paginaSiguiente() {
+    paginaActual++;
+    cargarSeriesIniciales();
+}
+
+function paginaAnterior() {
+    if (paginaActual > 1) {
+        paginaActual--;
+        cargarSeriesIniciales();
     }
 }
