@@ -1,0 +1,38 @@
+main{
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    grid-template-rows: auto 1fr;
+}
+
+main > header{
+    grid-column: span 2;
+    grid-row: 1;
+}
+
+#panel-izquierda{
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#principal{
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#series{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 899px){
+    #series{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 549px){
+    #series{
+        grid-template-columns: 1fr;
+    }
+
+}
