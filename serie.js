@@ -35,7 +35,7 @@ class Serie{
         titulo.textContent = this.name;
 
         const lang = document.createElement("p");
-        lang.textContent = 'Idioma: ${this.language}';
+        lang.textContent = `Idioma: ${this.language}`;
 
        const gen = document.createElement("p");
         let textoGeneros = "";
@@ -53,7 +53,7 @@ class Serie{
         else{
             textoGeneros = this.generes || "Sin género";
         }
-        gen.textContent = 'Generos: ${listaGeneros}';
+        gen.textContent = `Generos: ${listaGeneros}`;
 
         card.appendChild(imagen);
         card.appendChild(titulo);
