@@ -30,7 +30,11 @@ class Serie{
         const imagen = document.createElement("img");
         imagen.src = this.image;
         imagen.alt = this.name;
-
+        imagen.style.cursor = "pointer";
+        imagen.addEventListener("click", () => {
+            window.open(this.url, "_blank");
+        });
+        
         const titulo = document.createElement("h3");
         titulo.textContent = this.name;
 
@@ -53,12 +57,18 @@ class Serie{
         else{
             textoGeneros = this.generes || "Sin género";
         }
-        gen.textContent = `Generos: ${listaGeneros}`;
+        gen.textContent = `Generos: ${textoGeneros}`;
 
-        card.appendChild(imagen);
-        card.appendChild(titulo);
-        card.appendChild(lang);
-        card.appendChild(gen);
+        const botonGuardar = document.createElement("button");
+        botonGuardar.textContent = "guardar";
+        botonGuardar.addEventListener("click", () => {
+            Serie.guardarSerie(this);
+        });
+
+        contenedor.appendChild(imagen);
+        contenedor.appendChild(titulo);
+        contenedor.appendChild(lang);
+        contenedor.appendChild(gen);
 
         return contenedor;
     }
