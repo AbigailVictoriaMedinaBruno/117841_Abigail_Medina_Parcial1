@@ -69,7 +69,21 @@ class Serie{
         contenedor.appendChild(titulo);
         contenedor.appendChild(lang);
         contenedor.appendChild(gen);
-
+        contenedor.appendChild(botonGuardar);
+        
         return contenedor;
     }
+
+    static guardarSerie(serie){
+    let seriesGuardadas = JSON.parse(localStorage.getItem("seriesGuardadas")) || [];
+    const haySeries = seriesGuardadas.some((item) => item.id === serie.id);
+
+    if (!haySeries) {
+        seriesGuardadas.push(serie);
+        localStorage.setItem("seriesGuardadas", JSON.stringify(seriesGuardadas));
+        alert(`${serie.name} se guardó correctamente.`);
+    } else {
+        alert(`${serie.name} ya estaba guardada.`);
+    }
+}
 }
